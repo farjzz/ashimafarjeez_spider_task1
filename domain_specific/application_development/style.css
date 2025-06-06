@@ -1,0 +1,62 @@
+body {
+    background-color: black;
+}
+
+#grid td {
+    width: 120px;
+    height: 120px;
+    background-color: rgb(210, 205, 205);
+    border: 3px solid;
+}
+
+.game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 40px;
+}
+
+.currentPlayer {
+    color: white;
+    padding-left: 200px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.txt {
+    margin-bottom: 20px;
+}
+
+.disc {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    z-index: 9999;
+    transition: top 0.8s ease;
+    pointer-events: none;
+}
+
+.gridd {
+    position: relative;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
