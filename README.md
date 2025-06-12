@@ -18,3 +18,8 @@ Built the Disc Battle game using HTML, CSS and JavaScript. It's a two-player-bas
 * Falling disc animation
 ### Computer networking
 Simulated an office network with multiple departments, IP addressing, routing and configurations using Cisco Packet Tracer.
+## How to run the projects
+- For web projects:
+  - Open `index.html` in your browser.
+- For networking simulation:
+  - Open `computer_networking.pkt` using Cisco Packet Tracer.
