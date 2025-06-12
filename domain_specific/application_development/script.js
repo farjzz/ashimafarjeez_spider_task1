@@ -74,17 +74,18 @@ function switchh() {
     timeDisplay.textContent = time;
 }
 function animate(c, r) {
-    console.log("called");
     const disc = document.createElement("div");
     disc.classList.add("disc");
     disc.classList.add(current == "Red" ? "red" : "yellow");
+    const gridRect = document.querySelector(".gridd");
     const target = document.querySelector(`td[data-row='${r}'][data-column='${c}']`);
     const cellRect = target.getBoundingClientRect();
-    disc.style.left = (cellRect.left + 15) + "px";
+    const gridRectt = gridRect.getBoundingClientRect();
+    disc.style.left = (cellRect.left - gridRectt.left + 10) + "px";
     disc.style.top = "100px";
-    document.body.appendChild(disc);
+    gridRect.appendChild(disc);
     setTimeout(() => {
-        disc.style.top = (cellRect.top + 15) + "px";
+        disc.style.top = (cellRect.top - gridRectt.top + 10) + "px";
     }, 10);
 }
 function colAvailable() {
@@ -131,7 +132,9 @@ setInterval(() => {
     if (time == 0) {
         switchh();
         location.reload();
-        alert(`${current} won !!`);
+        setTimeout(() => {
+            alert(`${current} won !!`);
+        }, 10);
         return;
     }
 }, 1000);
