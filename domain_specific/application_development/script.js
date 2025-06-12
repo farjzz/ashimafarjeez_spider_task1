@@ -24,7 +24,7 @@ function drawGrid() {
 drawGrid();
 grid.addEventListener("click", function (e) {
     let cols = colAvailable();
-    if (cols == 0) {
+    if (cols.length == 0) {
         setTimeout(() => {
             alert(`Game Over!`)
             location.reload();
@@ -36,7 +36,7 @@ grid.addEventListener("click", function (e) {
     if (!place && cols.includes(col) && cols.length > 1) {
         blocked = col;
         place = true;
-        console.log(`A block happened`);
+        return;
     }
     for (let i = 5; i >= 0; i--) {
         const targetCell = document.querySelector(`td[data-row='${i}'][data-column='${col}']`);
@@ -44,22 +44,21 @@ grid.addEventListener("click", function (e) {
             animate(col, i);
             targetCell.classList.add(current);
             if (won(i, col, current)) {
+                const winner = current;
                 setTimeout(() => {
-                    switchh();
-                    alert(`${current} won!!`)
+                    alert(`${winner} won!!`)
                     location.reload();
                 }, 1000);
             }
             cols = colAvailable();
             if (cols.length > 1) {
                 place = false;
-                blocked = null;
             }
             else {
                 place = true;
-                blocked = null;
                 display.textContent = "Blocking is not possible";
             }
+            blocked=null;
             switchh();
             break;
         }
@@ -77,7 +76,7 @@ function animate(c, r) {
     const disc = document.createElement("div");
     disc.classList.add("disc");
     disc.classList.add(current == "Red" ? "red" : "yellow");
-    const gridRect = document.querySelector(".gridd");
+    const gridRect = document.getElementById("grid");
     const target = document.querySelector(`td[data-row='${r}'][data-column='${c}']`);
     const cellRect = target.getBoundingClientRect();
     const gridRectt = gridRect.getBoundingClientRect();
@@ -98,6 +97,12 @@ function colAvailable() {
                 break;
             }
         }
+    }
+    if (available.length == 0) {
+        setTimeout(() => {
+            alert(`Game Over!`)
+            location.reload();
+        }, 1000);
     }
     return available;
 }
