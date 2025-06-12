@@ -81,11 +81,11 @@ function animate(c, r) {
     const target = document.querySelector(`td[data-row='${r}'][data-column='${c}']`);
     const cellRect = target.getBoundingClientRect();
     const gridRectt = gridRect.getBoundingClientRect();
-    disc.style.left = (cellRect.left - gridRectt.left + 10) + "px";
-    disc.style.top = "100px";
+    disc.style.left = (cellRect.left - gridRectt.left + 15) + "px";
+    disc.style.top = "-60px";
     gridRect.appendChild(disc);
     setTimeout(() => {
-        disc.style.top = (cellRect.top - gridRectt.top + 10) + "px";
+        disc.style.top = (cellRect.top - gridRectt.top + 15) + "px";
     }, 10);
 }
 function colAvailable() {
