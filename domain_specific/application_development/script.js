@@ -8,6 +8,7 @@ let current = "Red";
 let block = "Yellow";
 let place = false;
 let blocked;
+let over = false;
 const direc = [[[0, 1], [0, -1]], [[1, 0], [-1, 0]], [[1, 1], [-1, -1]], [[1, -1], [-1, 1]]];
 function drawGrid() {
     for (let i = 0; i < 6; i++) {
@@ -23,6 +24,7 @@ function drawGrid() {
 }
 drawGrid();
 grid.addEventListener("click", function (e) {
+    if(over) return;
     let cols = colAvailable();
     if (cols.length == 0) {
         setTimeout(() => {
@@ -44,6 +46,7 @@ grid.addEventListener("click", function (e) {
             animate(col, i);
             targetCell.classList.add(current);
             if (won(i, col, current)) {
+                over = true;
                 const winner = current;
                 setTimeout(() => {
                     alert(`${winner} won!!`)
