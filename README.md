@@ -9,7 +9,7 @@ Built the Hammer Strength game using HTML, CSS and JavaScript. It's a single-pla
 ### Computer networking
 Answered all the questions by analysing the PCAP file using Wireshark and compiled them into a document.
 ### UI-UX
-Built the UI for the Coffee landing page using Figma and have uploaded the exported PDF of the design.
+Designed the landing page for a coffee company using Figma and have uploaded the exported PDF of the design.
 ## Domain-specific tasks
 ### Application development
 Built the Disc Battle game using HTML, CSS and JavaScript. It's a two-player-based game that's implemented with:
