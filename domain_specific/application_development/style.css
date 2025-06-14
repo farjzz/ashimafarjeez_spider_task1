@@ -20,12 +20,12 @@ h1 {
     color: white;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-top: 40px;
+    padding: 0;
+    margin: 0;
 }
 
 .currentPlayer {
     color: white;
-    padding-left: 200px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 30px;
     width: 500px;
@@ -59,4 +59,58 @@ h1 {
 
 .yellow {
     background-color: yellow;
+}
+
+.lb {
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    margin-top: 70px;
+    background-color: rgb(64, 64, 64);
+    border-radius: 20px;
+    border: solid white 6px;
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#lbList {
+    font-size: 28px;
+    list-style: none;
+}
+
+#lbList li {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 200px;
+}
+
+button {
+    padding: 20px;
+    font-size: 20px;
+    background-color: rgb(70, 67, 67);
+    border: solid white 2px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-left: 20px;
+    border-radius: 6px;
+    color: white;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.title {
+    margin-top: 50px;
+    margin-bottom: 25px;
 }
