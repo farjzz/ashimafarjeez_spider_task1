@@ -7,15 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Disc Battle</h1>
+    <h1 class="title">Disc Battle</h1>
     <div class="game">
         <div class="gridd">
             <table id="grid"></table>
         </div>
-        <div class="currentPlayer">
-            <div class="txt">Current player: <span id="current">Red</span></div>
-            <div class="txt" id="blockk"><span id="block">Yellow</span> now blocks the column</div>
-            <div>Time Left: <span id="time">20</span></div>
+        <div class="content">
+            <div class="currentPlayer">
+                <div class="txt">Current player: <span id="current">Red</span></div>
+                <div class="txt" id="blockk"><span id="block">Yellow</span> now blocks the column</div>
+                <div>Time Left: <span id="time">20</span></div>
+                <div class="buttons">
+                    <button id="pause" onclick="pause()">Pause</button>
+                    <button id="resume" disabled onclick="resume()">Resume</button>
+                </div>
+            </div>
+            <div class="lb">
+                <h1>Leaderboard</h2>
+                <ul id="lbList"></ul>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
