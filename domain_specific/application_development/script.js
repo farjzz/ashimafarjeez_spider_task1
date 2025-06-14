@@ -3,6 +3,11 @@ const currentDisplay = document.getElementById("current");
 const blockDisplay = document.getElementById("block");
 const timeDisplay = document.getElementById("time");
 const display = document.getElementById("blockk");
+const lbList = document.getElementById("lbList");
+let scores = JSON.parse(localStorage.getItem("scores")) || { Red: 0, Yellow: 0 };
+const pauseBt = document.getElementById("pause");
+const resumeBt = document.getElementById("resume");
+let paused = false;
 let time = 20;
 let current = "Red";
 let block = "Yellow";
@@ -24,7 +29,7 @@ function drawGrid() {
 }
 drawGrid();
 grid.addEventListener("click", function (e) {
-    if(over) return;
+    if (over) return;
     let cols = colAvailable();
     if (cols.length == 0) {
         setTimeout(() => {
@@ -48,6 +53,9 @@ grid.addEventListener("click", function (e) {
             if (won(i, col, current)) {
                 over = true;
                 const winner = current;
+                scores[winner]++;
+                localStorage.setItem("scores", JSON.stringify(scores));
+                lbUpdate();
                 setTimeout(() => {
                     alert(`${winner} won!!`)
                     location.reload();
@@ -61,7 +69,7 @@ grid.addEventListener("click", function (e) {
                 place = true;
                 display.textContent = "Blocking is not possible";
             }
-            blocked=null;
+            blocked = null;
             switchh();
             break;
         }
@@ -134,15 +142,50 @@ function won(row, col, clr) {
     }
     return false;
 }
+function lbUpdate() {
+    let e = Object.entries(scores);
+    e.sort((a, b) => b[1] - a[1]);
+    lbList.innerHTML = "";
+    e.forEach((element, i) => {
+        const [player, score] = element;
+        const li = document.createElement("li");
+        const left = document.createElement("span");
+        left.textContent = `${i + 1}. ${player}`;
+        const right = document.createElement("span");
+        right.textContent = `Score: ${score}`;
+        li.appendChild(left);
+        li.appendChild(right);
+        lbList.appendChild(li);
+    });
+}
+function pause() {
+    paused = true;
+    pauseBt.disabled = true;
+    resumeBt.disabled = false;
+}
+function resume() {
+    if (paused && !over) {
+        paused = false;
+        pauseBt.disabled = false;
+        resumeBt.disabled = true;
+    }
+}
 setInterval(() => {
-    time--;
-    timeDisplay.textContent = time;
-    if (time == 0) {
-        switchh();
-        location.reload();
-        setTimeout(() => {
-            alert(`${current} won !!`);
-        }, 10);
-        return;
+    if (!paused) {
+        time--;
+        timeDisplay.textContent = time;
+        if (time == 0) {
+            over = true;
+            const winner = block;
+            scores[winner]++;
+            localStorage.setItem("scores", JSON.stringify(scores));
+            lbUpdate();
+            location.reload();
+            setTimeout(() => {
+                alert(`${winner} won !!`);
+            }, 10);
+            return;
+        }
     }
 }, 1000);
+lbUpdate();
